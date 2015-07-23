@@ -75,7 +75,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public long getRouteId(GRoute gRoute) {
-		return Long.parseLong(gRoute.route_short_name);
+		return Long.parseLong(gRoute.getRouteShortName());
 	}
 
 	@Override
@@ -85,7 +85,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public String getRouteLongName(GRoute gRoute) {
-		String routeLongName = gRoute.route_long_name;
+		String routeLongName = gRoute.getRouteLongName();
 		routeLongName = CleanUtils.cleanSlashes(routeLongName);
 		routeLongName = CleanUtils.cleanStreetTypes(routeLongName);
 		routeLongName = CleanUtils.cleanNumbers(routeLongName);
@@ -107,7 +107,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public void setTripHeadsign(MRoute mRoute, MTrip mTrip, GTrip gTrip, GSpec gtfs) {
-		String tripHeadsignLC = gTrip.trip_headsign.toLowerCase(Locale.ENGLISH);
+		String tripHeadsignLC = gTrip.getTripHeadsign().toLowerCase(Locale.ENGLISH);
 		if (INBOUND_LC.equalsIgnoreCase(tripHeadsignLC)) {
 			mTrip.setHeadsignInbound(MInboundType.INBOUND);
 			return;
@@ -116,7 +116,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 			return;
 		}
 		if (LOOP_LC.equalsIgnoreCase(tripHeadsignLC)) {
-			mTrip.setHeadsignString(gTrip.trip_headsign, 0);
+			mTrip.setHeadsignString(gTrip.getTripHeadsign(), 0);
 			return;
 		}
 		System.out.printf("\n%s: Unexpected trip %s!\n", mRoute.id, gTrip);
