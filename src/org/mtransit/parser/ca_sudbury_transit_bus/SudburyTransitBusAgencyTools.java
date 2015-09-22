@@ -125,6 +125,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 	private static final String CAMBRIAN_COLLEGE = "Cambrian College";
 	private static final String PEPERTREE_VILLAGE = "Pepertree Vlg";
 	private static final String LAURENTIAN_UNIVERSITY = "Laurentian U";
+	private static final String LAURENTIAN_UNIVERSITY_FR = "U Laurentienne";
 	private static final String ALGOMA_HOSPITAL = "Algoma Hosp";
 	private static final String LIVELY = "Lively";
 	private static final String CHELMSFORD = "Chelmsford";
@@ -134,6 +135,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 	private static final String COPPER_CLIFF = "Copper Clf";
 	private static final String FALCONBRIDGE_TRANSIT_TERMINAL = "Falconbridge / Transit Terminal";
 	private static final String LASALLE_PEPERTREE = "Lasalle / Pepertree";
+	private static final String UNIVERSITY = "University";
 
 	@Override
 	public void setTripHeadsign(MRoute mRoute, MTrip mTrip, GTrip gTrip, GSpec gtfs) {
@@ -435,18 +437,25 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 		System.exit(-1);
 	}
 
-	@Override
-	public String cleanTripHeadsign(String tripHeadsign) {
-		tripHeadsign = CleanUtils.cleanNumbers(tripHeadsign);
-		tripHeadsign = CleanUtils.cleanStreetTypes(tripHeadsign);
-		return CleanUtils.cleanLabel(tripHeadsign);
-	}
-
 	private static final Pattern CLEAN_UNIVERISITY = Pattern.compile("((^|\\W){1}(laurentian university)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
-	private static final String CLEAN_UNIVERISITY_REPLACEMENT = "$2Laurentian U$4";
+	private static final String CLEAN_UNIVERISITY_REPLACEMENT = "$2" + LAURENTIAN_UNIVERSITY + "$4";
 
 	private static final Pattern CLEAN_UNIVERISITY_FR = Pattern.compile("((^|\\W){1}(universit[e|é] laurentienne)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
-	private static final String CLEAN_UNIVERISITY_FR_REPLACEMENT = "$2U Laurentienne$4";
+	private static final String CLEAN_UNIVERISITY_FR_REPLACEMENT = "$2" + LAURENTIAN_UNIVERSITY_FR + "$4";
+
+	private static final Pattern SUDBURY_SHOPPING_CENTER = Pattern.compile("(subdury shopping centre)", Pattern.CASE_INSENSITIVE);
+	private static final String SUDBURY_SHOPPING_CENTER_REPLACEMENT = "Subdury centre";
+
+	@Override
+	public String cleanTripHeadsign(String tripHeadsign) {
+		tripHeadsign = SUDBURY_SHOPPING_CENTER.matcher(tripHeadsign).replaceAll(SUDBURY_SHOPPING_CENTER_REPLACEMENT);
+		tripHeadsign = CLEAN_UNIVERISITY.matcher(tripHeadsign).replaceAll(CLEAN_UNIVERISITY_REPLACEMENT);
+		tripHeadsign = CLEAN_UNIVERISITY_FR.matcher(tripHeadsign).replaceAll(CLEAN_UNIVERISITY_FR_REPLACEMENT);
+		tripHeadsign = CleanUtils.cleanNumbers(tripHeadsign);
+		tripHeadsign = CleanUtils.cleanStreetTypes(tripHeadsign);
+		tripHeadsign = CleanUtils.removePoints(tripHeadsign);
+		return CleanUtils.cleanLabel(tripHeadsign);
+	}
 
 	@Override
 	public String cleanStopName(String gStopName) {
