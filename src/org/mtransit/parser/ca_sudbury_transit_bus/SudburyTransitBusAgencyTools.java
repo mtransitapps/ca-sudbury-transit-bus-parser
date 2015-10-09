@@ -140,7 +140,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 	@Override
 	public void setTripHeadsign(MRoute mRoute, MTrip mTrip, GTrip gTrip, GSpec gtfs) {
 		String tripHeadsignLC = gTrip.getTripHeadsign().toLowerCase(Locale.ENGLISH);
-		if (mRoute.id == 2l) { // 002
+		if (mRoute.getId() == 2l) { // 002
 			if (INBOUND_LC.equalsIgnoreCase(tripHeadsignLC)) {
 				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
 				return;
@@ -148,7 +148,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(NEW_SUBDURY_SHOPPING_CENTRE, OUTBOUND_ID);
 				return;
 			}
-		} else if (mRoute.id == 6l) { // 006
+		} else if (mRoute.getId() == 6l) { // 006
 			if (INBOUND_LC.equalsIgnoreCase(tripHeadsignLC)) {
 				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
 				return;
@@ -156,7 +156,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(SPRUCE_ST, OUTBOUND_ID);
 				return;
 			}
-		} else if (mRoute.id == 7l) { // 007
+		} else if (mRoute.getId() == 7l) { // 007
 			if (INBOUND_LC.equalsIgnoreCase(tripHeadsignLC)) {
 				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
 				return;
@@ -164,7 +164,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(PIONEER_MANOR, OUTBOUND_ID);
 				return;
 			}
-		} else if (mRoute.id == 12l) { // 012
+		} else if (mRoute.getId() == 12l) { // 012
 			if (INBOUND_LC.equalsIgnoreCase(tripHeadsignLC)) {
 				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
 				return;
@@ -172,7 +172,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(MC_NEIL_BLVD, OUTBOUND_ID);
 				return;
 			}
-		} else if (mRoute.id == 14l) { // 014
+		} else if (mRoute.getId() == 14l) { // 014
 			if (INBOUND_LC.equalsIgnoreCase(tripHeadsignLC)) {
 				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
 				return;
@@ -180,7 +180,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(COLLEGE_BOREAL, OUTBOUND_ID);
 				return;
 			}
-		} else if (mRoute.id == 15l) { // 015
+		} else if (mRoute.getId() == 15l) { // 015
 			if (INBOUND_LC.equalsIgnoreCase(tripHeadsignLC)) {
 				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
 				return;
@@ -188,7 +188,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(TAXATION_CENTRE, OUTBOUND_ID);
 				return;
 			}
-		} else if (mRoute.id == 17l) { // 017
+		} else if (mRoute.getId() == 17l) { // 017
 			if (INBOUND_LC.equalsIgnoreCase(tripHeadsignLC)) {
 				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
 				return;
@@ -196,7 +196,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(BURTON_AVE, OUTBOUND_ID);
 				return;
 			}
-		} else if (mRoute.id == 101l) {
+		} else if (mRoute.getId() == 101l) {
 			if (INBOUND_LC.equalsIgnoreCase(tripHeadsignLC)) {
 				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
 				return;
@@ -204,7 +204,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(BANCROFT_AND_MOONLIGHT, OUTBOUND_ID);
 				return;
 			}
-		} else if (mRoute.id == 102l) {
+		} else if (mRoute.getId() == 102l) {
 			if (INBOUND_LC.equalsIgnoreCase(tripHeadsignLC)) {
 				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
 				return;
@@ -212,12 +212,12 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(BANCROFT_AND_MOONLIGHT, OUTBOUND_ID);
 				return;
 			}
-		} else if (mRoute.id == 103l) {
+		} else if (mRoute.getId() == 103l) {
 			if (LOOP_LC.equalsIgnoreCase(tripHeadsignLC)) {
 				mTrip.setHeadsignString(CONISTON_TRANSIT_TERMINAL, LOOP_ID);
 				return;
 			}
-		} else if (mRoute.id == 141l) {
+		} else if (mRoute.getId() == 141l) {
 			if (INBOUND_LC.equalsIgnoreCase(tripHeadsignLC)) {
 				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
 				return;
@@ -225,7 +225,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(HAWTHORNE_BARRYDOWNE, OUTBOUND_ID);
 				return;
 			}
-		} else if (mRoute.id == 142l) {
+		} else if (mRoute.getId() == 142l) {
 			if (INBOUND_LC.equalsIgnoreCase(tripHeadsignLC)) {
 				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
 				return;
@@ -233,12 +233,12 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(HAWTHORNE_BARRYDOWNE, OUTBOUND_ID);
 				return;
 			}
-		} else if (mRoute.id == 147l) {
+		} else if (mRoute.getId() == 147l) {
 			if (LOOP_LC.equalsIgnoreCase(tripHeadsignLC)) {
 				mTrip.setHeadsignString(TRANSIT_TERMINAL, LOOP_ID);
 				return;
 			}
-		} else if (mRoute.id == 181l) {
+		} else if (mRoute.getId() == 181l) {
 			if (INBOUND_LC.equalsIgnoreCase(tripHeadsignLC)) {
 				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
 				return;
@@ -246,7 +246,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(CAM_ST, OUTBOUND_ID);
 				return;
 			}
-		} else if (mRoute.id == 182l) {
+		} else if (mRoute.getId() == 182l) {
 			if (INBOUND_LC.equalsIgnoreCase(tripHeadsignLC)) {
 				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
 				return;
@@ -254,7 +254,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(CAM_ST, OUTBOUND_ID);
 				return;
 			}
-		} else if (mRoute.id == 189l) {
+		} else if (mRoute.getId() == 189l) {
 			if (INBOUND_LC.equalsIgnoreCase(tripHeadsignLC)) {
 				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
 				return;
@@ -262,7 +262,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(WALMART_SOUTH_END, OUTBOUND_ID);
 				return;
 			}
-		} else if (mRoute.id == 241l) {
+		} else if (mRoute.getId() == 241l) {
 			if (INBOUND_LC.equalsIgnoreCase(tripHeadsignLC)) {
 				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
 				return;
@@ -270,7 +270,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(BANCROFT_AND_MOONLIGHT, OUTBOUND_ID);
 				return;
 			}
-		} else if (mRoute.id == 300l) {
+		} else if (mRoute.getId() == 300l) {
 			if (INBOUND_LC.equalsIgnoreCase(tripHeadsignLC)) {
 				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
 				return;
@@ -278,7 +278,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(PEPERTREE_VILLAGE, OUTBOUND_ID);
 				return;
 			}
-		} else if (mRoute.id == 301l) {
+		} else if (mRoute.getId() == 301l) {
 			if (INBOUND_LC.equalsIgnoreCase(tripHeadsignLC)) {
 				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
 				return;
@@ -286,7 +286,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(PEPERTREE_VILLAGE, OUTBOUND_ID);
 				return;
 			}
-		} else if (mRoute.id == 302l) {
+		} else if (mRoute.getId() == 302l) {
 			if (INBOUND_LC.equalsIgnoreCase(tripHeadsignLC)) {
 				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
 				return;
@@ -294,17 +294,18 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(LANSING, OUTBOUND_ID);
 				return;
 			}
-		} else if (mRoute.id == 303l) {
+		} else if (mRoute.getId() == 303l) {
 			if (LOOP_LC.equalsIgnoreCase(tripHeadsignLC)) {
 				mTrip.setHeadsignString(FALCONBRIDGE_TRANSIT_TERMINAL, LOOP_ID);
 				return;
 			}
-		} else if (mRoute.id == 304l) {
+		} else if (mRoute.getId() == 304l) {
+			// split 304 ? NO! would not match real-time MyBus API
 			if (LOOP_LC.equalsIgnoreCase(tripHeadsignLC)) {
 				mTrip.setHeadsignString(TRANSIT_TERMINAL_NEW_SUDBURY, LOOP_ID);
 				return;
 			}
-		} else if (mRoute.id == 305l) {
+		} else if (mRoute.getId() == 305l) {
 			if (INBOUND_LC.equalsIgnoreCase(tripHeadsignLC)) {
 				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
 				return;
@@ -312,7 +313,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(LASALLE_PEPERTREE, OUTBOUND_ID);
 				return;
 			}
-		} else if (mRoute.id == 400l) {
+		} else if (mRoute.getId() == 400l) {
 			if (INBOUND_LC.equalsIgnoreCase(tripHeadsignLC)) {
 				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
 				return;
@@ -320,7 +321,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(CAMBRIAN_COLLEGE, OUTBOUND_ID);
 				return;
 			}
-		} else if (mRoute.id == 401l) {
+		} else if (mRoute.getId() == 401l) {
 			if (INBOUND_LC.equalsIgnoreCase(tripHeadsignLC)) {
 				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
 				return;
@@ -328,7 +329,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(CAMBRIAN_COLLEGE, OUTBOUND_ID);
 				return;
 			}
-		} else if (mRoute.id == 402l) {
+		} else if (mRoute.getId() == 402l) {
 			if (INBOUND_LC.equalsIgnoreCase(tripHeadsignLC)) {
 				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
 				return;
@@ -336,7 +337,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(CAMBRIAN_COLLEGE, OUTBOUND_ID);
 				return;
 			}
-		} else if (mRoute.id == 403l) {
+		} else if (mRoute.getId() == 403l) {
 			if (INBOUND_LC.equalsIgnoreCase(tripHeadsignLC)) {
 				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
 				return;
@@ -344,7 +345,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(PEPERTREE_VILLAGE, OUTBOUND_ID);
 				return;
 			}
-		} else if (mRoute.id == 500l) {
+		} else if (mRoute.getId() == 500l) {
 			if (INBOUND_LC.equalsIgnoreCase(tripHeadsignLC)) {
 				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
 				return;
@@ -352,7 +353,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(LAURENTIAN_UNIVERSITY, OUTBOUND_ID);
 				return;
 			}
-		} else if (mRoute.id == 501l) {
+		} else if (mRoute.getId() == 501l) {
 			if (INBOUND_LC.equalsIgnoreCase(tripHeadsignLC)) {
 				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
 				return;
@@ -360,7 +361,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(ALGOMA_HOSPITAL, OUTBOUND_ID);
 				return;
 			}
-		} else if (mRoute.id == 502l) {
+		} else if (mRoute.getId() == 502l) {
 			if (INBOUND_LC.equalsIgnoreCase(tripHeadsignLC)) {
 				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
 				return;
@@ -368,7 +369,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(ALGOMA_HOSPITAL, OUTBOUND_ID);
 				return;
 			}
-		} else if (mRoute.id == 503l) {
+		} else if (mRoute.getId() == 503l) {
 			if (INBOUND_LC.equalsIgnoreCase(tripHeadsignLC)) {
 				mTrip.setHeadsignString(UNIVERSITY, INBOUND_ID);
 				return;
@@ -376,7 +377,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(WALMART_SOUTH_END, OUTBOUND_ID);
 				return;
 			}
-		} else if (mRoute.id == 640l) {
+		} else if (mRoute.getId() == 640l) {
 			if (INBOUND_LC.equalsIgnoreCase(tripHeadsignLC)) {
 				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
 				return;
@@ -384,7 +385,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(COPPER_CLIFF, OUTBOUND_ID);
 				return;
 			}
-		} else if (mRoute.id == 701l) {
+		} else if (mRoute.getId() == 701l) {
 			if (INBOUND_LC.equalsIgnoreCase(tripHeadsignLC)) {
 				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
 				return;
@@ -392,7 +393,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(LIVELY, OUTBOUND_ID);
 				return;
 			}
-		} else if (mRoute.id == 702l) {
+		} else if (mRoute.getId() == 702l) {
 			if (INBOUND_LC.equalsIgnoreCase(tripHeadsignLC)) {
 				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
 				return;
@@ -400,7 +401,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(CHELMSFORD, OUTBOUND_ID);
 				return;
 			}
-		} else if (mRoute.id == 703l) {
+		} else if (mRoute.getId() == 703l) {
 			if (INBOUND_LC.equalsIgnoreCase(tripHeadsignLC)) {
 				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
 				return;
@@ -408,7 +409,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(CAPREOL, OUTBOUND_ID);
 				return;
 			}
-		} else if (mRoute.id == 704l) {
+		} else if (mRoute.getId() == 704l) {
 			if (INBOUND_LC.equalsIgnoreCase(tripHeadsignLC)) {
 				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
 				return;
@@ -416,7 +417,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(GRAVELLE_DR_TRAILER_PARK, OUTBOUND_ID);
 				return;
 			}
-		} else if (mRoute.id == 819l) {
+		} else if (mRoute.getId() == 819l) {
 			if (INBOUND_LC.equalsIgnoreCase(tripHeadsignLC)) {
 				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
 				return;
@@ -424,7 +425,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(WALMART_SOUTH_END, OUTBOUND_ID);
 				return;
 			}
-		} else if (mRoute.id == 940l) {
+		} else if (mRoute.getId() == 940l) {
 			if (INBOUND_LC.equalsIgnoreCase(tripHeadsignLC)) {
 				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
 				return;
@@ -433,7 +434,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				return;
 			}
 		}
-		System.out.printf("\n%s: Unexpected trip %s!\n", mRoute.id, gTrip);
+		System.out.printf("\n%s: Unexpected trip %s!\n", mRoute.getId(), gTrip);
 		System.exit(-1);
 	}
 
