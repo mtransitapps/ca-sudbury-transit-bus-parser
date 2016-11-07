@@ -375,7 +375,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 						"1000", "5830" //
 						})) //
 				.compileBothTripSort());
-		map2.put(241l, new RouteTripSpec(189l, //
+		map2.put(241l, new RouteTripSpec(241l, //
 				INBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, TRANSIT_TERMINAL, //
 				OUTBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, BANCROFT_AND_MOONLIGHT) //
 				.addTripSort(INBOUND_ID, //
