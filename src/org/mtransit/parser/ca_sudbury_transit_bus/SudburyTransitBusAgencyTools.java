@@ -296,16 +296,20 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { //
 						})) //
 				.compileBothTripSort());
-		map2.put(141l, new RouteTripSpec(141l, //
+		map2.put(141L, new RouteTripSpec(141L, //
 				INBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, TRANSIT_TERMINAL, //
 				OUTBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, HAWTHORNE_BARRYDOWNE) //
 				.addTripSort(INBOUND_ID, //
 						Arrays.asList(new String[] { //
-						"6925", "1000" //
+						"6925", // New Sudbury Centre
+								"1000", // Transit Terminal
 						})) //
 				.addTripSort(OUTBOUND_ID, //
 						Arrays.asList(new String[] { //
-						"1000", "6760", "6925" //
+						"1000", // Transit Terminal
+								"6760", // Barrydowne
+								"6925", // New Sudbury Centre
+								"6930", // Shoppers Drug Mart
 						})) //
 				.compileBothTripSort());
 		map2.put(142l, new RouteTripSpec(142l, //
@@ -419,26 +423,29 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 						"1000", "7300" //
 						})) //
 				.compileBothTripSort());
-		map2.put(302l, new RouteTripSpec(302l, //
+		map2.put(302L, new RouteTripSpec(302L, //
 				INBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, TRANSIT_TERMINAL, //
 				OUTBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, LANSING) //
 				.addTripSort(INBOUND_ID, //
 						Arrays.asList(new String[] { //
-						"7180", //
-								"7110", // ==
+						"7180", // Graywood
+								"7110", // == Cambrian College
 								"7095", // !=
-								"6505", "6510", // !=
+								"6505", // !=
+								"6510", // !=
 								"7085", // ==
-								"1000" //
+								"6585", // New Sudbury Centre
+								"1000", // Transit Terminal
 						})) //
 				.addTripSort(OUTBOUND_ID, //
 						Arrays.asList(new String[] { //
-						"1000", //
+						"1000", // Transit Terminal
 								"7090", // ==
-								"6552", "6500", // !=
+								"6552", // !=
+								"6500", // !=
 								"7100", // !=
 								"7113", // ==
-								"7180" //
+								"7180", // Graywood
 						})) //
 				.compileBothTripSort());
 		map2.put(304l, new RouteTripSpec(304l, //
@@ -481,11 +488,26 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				OUTBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, CAMBRIAN_COLLEGE) //
 				.addTripSort(INBOUND_ID, //
 						Arrays.asList(new String[] { //
-						"7115", "1000" //
+						"7115", // Cambrian College
+								"4371", // == !=
+								"4350", // !=
+								"4360", // != <>
+								"4351", // == !=
+								"1000", // Transit Terminal
 						})) //
 				.addTripSort(OUTBOUND_ID, //
 						Arrays.asList(new String[] { //
-						"1000", "7115" //
+						"1000", // Transit Terminal
+								"4185", // ==
+								"4325", // !=
+								"4335", // ==
+								"4346", // !=
+								"4360", // <>
+								"4366", // ==
+								"4373", // !=
+								"4356", // !=
+								"6600", // ==
+								"7115", // Cambrian College
 						})) //
 				.compileBothTripSort());
 		map2.put(402l, new RouteTripSpec(402l, //
