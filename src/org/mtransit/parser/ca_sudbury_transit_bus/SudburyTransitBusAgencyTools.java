@@ -27,7 +27,9 @@ import org.mtransit.parser.mt.data.MTripStop;
 
 // http://opendata.greatersudbury.ca/
 // http://opendata.greatersudbury.ca/datasets?q=Transportation&sort_by=relevance
+// http://opendata.greatersudbury.ca/datasets/transit-schedule-data-gtfs
 // http://www.greatersudbury.ca/image/opendata/gtfs.zip
+// https://www.greatersudbury.ca/image/opendata/gtfs.zip
 public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 
 	public static void main(String[] args) {
@@ -128,6 +130,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 	private static final int INBOUND_ID = 2; // like MyBus API, do not change
 	private static final int LOOP_ID = 3; // like MyBus API, do not change
 
+	private static final String _AND_ = " & ";
 	private static final String TRANSIT_TERMINAL = "Transit Terminal";
 	private static final String NEW_SUBDURY_SHOPPING_CENTRE = "New Subdury Ctr";
 	private static final String SPRUCE_ST = "Spruce St";
@@ -136,7 +139,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 	private static final String COLLEGE_BOREAL = "College Boreal";
 	private static final String TAXATION_CENTRE = "Taxation Ctr";
 	private static final String BURTON_AVE = "Burton Ave";
-	private static final String BANCROFT_AND_MOONLIGHT = "Bancroft & Moonlight";
+	private static final String BANCROFT_AND_MOONLIGHT = "Bancroft" + _AND_ + "Moonlight";
 	private static final String CONISTON_TRANSIT_TERMINAL = "Coniston / Transit Terminal";
 	private static final String HAWTHORNE_BARRYDOWNE = "Hawthorne @ Barrydowne";
 	private static final String CAM_ST = "Cam St";
@@ -607,7 +610,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 		if (ALL_ROUTE_TRIPS2.containsKey(mRoute.getId())) {
 			return; // split
 		}
-		if (mRoute.getId() == 303l) {
+		if (mRoute.getId() == 303L) {
 			if ("Falconbridge / Transit Terminal".equals(gTrip.getTripHeadsign())) {
 				mTrip.setHeadsignString(FALCONBRIDGE_TRANSIT_TERMINAL, LOOP_ID);
 				return;
@@ -695,6 +698,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 		tripHeadsign = SUDBURY_SHOPPING_CENTER.matcher(tripHeadsign).replaceAll(SUDBURY_SHOPPING_CENTER_REPLACEMENT);
 		tripHeadsign = CLEAN_UNIVERISITY.matcher(tripHeadsign).replaceAll(CLEAN_UNIVERISITY_REPLACEMENT);
 		tripHeadsign = CLEAN_UNIVERISITY_FR.matcher(tripHeadsign).replaceAll(CLEAN_UNIVERISITY_FR_REPLACEMENT);
+		tripHeadsign = CleanUtils.CLEAN_AND.matcher(tripHeadsign).replaceAll(CleanUtils.CLEAN_AND_REPLACEMENT);
 		tripHeadsign = CleanUtils.cleanNumbers(tripHeadsign);
 		tripHeadsign = CleanUtils.cleanStreetTypes(tripHeadsign);
 		tripHeadsign = CleanUtils.removePoints(tripHeadsign);
