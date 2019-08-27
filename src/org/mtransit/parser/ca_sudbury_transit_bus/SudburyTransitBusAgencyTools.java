@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
@@ -129,477 +130,24 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 
 	private static final int OUTBOUND_ID = 1; // like MyBus API, do not change
 	private static final int INBOUND_ID = 2; // like MyBus API, do not change
+	@SuppressWarnings("unused")
 	private static final int LOOP_ID = 3; // like MyBus API, do not change
 
-	private static final String _AND_ = " & ";
 	private static final String TRANSIT_TERMINAL = "Transit Terminal";
-	private static final String NEW_SUBDURY_SHOPPING_CENTRE = "New Subdury Ctr";
-	private static final String SPRUCE_ST = "Spruce St";
-	private static final String PIONEER_MANOR = "Pioneer Manor";
-	private static final String MC_NEIL_BLVD = "McNeil Blvd";
-	private static final String COLLEGE_BOREAL = "College Boreal";
-	private static final String TAXATION_CENTRE = "Taxation Ctr";
-	private static final String BURTON_AVE = "Burton Ave";
-	private static final String BANCROFT_AND_MOONLIGHT = "Bancroft" + _AND_ + "Moonlight";
-	private static final String CONISTON_TRANSIT_TERMINAL = "Coniston / Transit Terminal";
-	private static final String HAWTHORNE_BARRYDOWNE = "Hawthorne @ Barrydowne";
-	private static final String CAM_ST = "Cam St";
-	private static final String LANSING = "Lansing";
-	private static final String TRANSIT_TERMINAL_NEW_SUDBURY = "Transit Terminal / New Sudbury";
-	private static final String CAMBRIAN_COLLEGE = "Cambrian College";
-	private static final String PEPERTREE_VILLAGE = "Pepertree Vlg";
+	private static final String NEW_SUDBURY_CENTRE = "New Sudbury Ctr";
+	private static final String CONISTON = "Coniston";
+	private static final String CAMBRIAN = "Cambrian";
+	private static final String DOWNTOWN = "Downtown";
+	private static final String DOW = "Dow";
 	private static final String LAURENTIAN_UNIVERSITY = "Laurentian U";
 	private static final String LAURENTIAN_UNIVERSITY_FR = "U Laurentienne";
-	private static final String ALGOMA_HOSPITAL = "Algoma Hosp";
-	private static final String LIVELY = "Lively";
-	private static final String CHELMSFORD = "Chelmsford";
 	private static final String CAPREOL = "Capreol";
-	private static final String GRAVELLE_DR_TRAILER_PARK = "Gravelle Dr Trailer Pk";
-	private static final String WALMART_SOUTH_END = "Walmart South End";
-	private static final String COPPER_CLIFF = "Copper Clf";
-	private static final String FALCONBRIDGE_TRANSIT_TERMINAL = "Falconbridge / Transit Terminal";
-	private static final String LASALLE_PEPERTREE = "Lasalle / Pepertree";
-	private static final String UNIVERSITY = "University";
+	private static final String GRAVEL_DR = "Gravel Dr";
+	private static final String SOUTH_END = "South End";
 
 	private static HashMap<Long, RouteTripSpec> ALL_ROUTE_TRIPS2;
 	static {
 		HashMap<Long, RouteTripSpec> map2 = new HashMap<Long, RouteTripSpec>();
-		map2.put(2L, new RouteTripSpec(2L, //
-				INBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, TRANSIT_TERMINAL, //
-				OUTBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, NEW_SUBDURY_SHOPPING_CENTRE) //
-				.addTripSort(INBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"6940", // New Sudbury Centre
-								"1000", // Transit Terminal
-						})) //
-				.addTripSort(OUTBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"1000", // Transit Terminal
-								"6940", // New Sudbury Centre
-						})) //
-				.compileBothTripSort());
-		map2.put(6L, new RouteTripSpec(6L, //
-				INBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, TRANSIT_TERMINAL, //
-				OUTBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, SPRUCE_ST) //
-				.addTripSort(INBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"1330", // Brodie
-								"1000", // Transit Terminal
-						})) //
-				.addTripSort(OUTBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"1000", // Transit Terminal
-								"1220", // ==
-								"1225", // !=
-								"1227", // !=
-								"1230", // ==
-								"1330", // Brodie
-						})) //
-				.compileBothTripSort());
-		map2.put(7L, new RouteTripSpec(7L, //
-				INBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, TRANSIT_TERMINAL, //
-				OUTBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, PIONEER_MANOR) //
-				.addTripSort(INBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"1791", //
-								"1000", // Transit Terminal
-						})) //
-				.addTripSort(OUTBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"1000", // Transit Terminal
-								"1791", //
-						})) //
-				.compileBothTripSort());
-		map2.put(12L, new RouteTripSpec(12L, //
-				INBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, TRANSIT_TERMINAL, //
-				OUTBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, MC_NEIL_BLVD) //
-				.addTripSort(INBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"1395", //
-								"1000", // Transit Terminal
-						})) //
-				.addTripSort(OUTBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"1000", // Transit Terminal
-								"1395", //
-						})) //
-				.compileBothTripSort());
-		map2.put(14L, new RouteTripSpec(14L, //
-				INBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, TRANSIT_TERMINAL, //
-				OUTBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, COLLEGE_BOREAL) //
-				.addTripSort(INBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"1900", "1000" //
-						})) //
-				.addTripSort(OUTBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"1000", "1900" //
-						})) //
-				.compileBothTripSort());
-		map2.put(15L, new RouteTripSpec(15L, //
-				INBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, TRANSIT_TERMINAL, //
-				OUTBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, TAXATION_CENTRE) //
-				.addTripSort(INBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"1805", "1000" //
-						})) //
-				.addTripSort(OUTBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"1000", "1805" //
-						})) //
-				.compileBothTripSort());
-		map2.put(17L, new RouteTripSpec(17L, //
-				INBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, TRANSIT_TERMINAL, //
-				OUTBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, BURTON_AVE) //
-				.addTripSort(INBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"1530", "1000" //
-						})) //
-				.addTripSort(OUTBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"1000", "1515", "1530" //
-						})) //
-				.compileBothTripSort());
-		map2.put(101L, new RouteTripSpec(101L, //
-				INBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, TRANSIT_TERMINAL, //
-				OUTBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, BANCROFT_AND_MOONLIGHT) //
-				.addTripSort(INBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"4635", "1000" //
-						})) //
-				.addTripSort(OUTBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"1000", "4640", "4635" //
-						})) //
-				.compileBothTripSort());
-		map2.put(102L, new RouteTripSpec(102L, //
-				INBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, TRANSIT_TERMINAL, //
-				OUTBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, BANCROFT_AND_MOONLIGHT) //
-				.addTripSort(INBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"4635", "4310", "1000" //
-						})) //
-				.addTripSort(OUTBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"1000", "4640", "4635" //
-						})) //
-				.compileBothTripSort());
-		map2.put(103L, new RouteTripSpec(103L, //
-				LOOP_ID, MTrip.HEADSIGN_TYPE_STRING, CONISTON_TRANSIT_TERMINAL, //
-				0, MTrip.HEADSIGN_TYPE_STRING, "") //
-				.addTripSort(LOOP_ID, //
-						Arrays.asList(new String[] { //
-						"1000", // Transit Terminal
-								"4335", // != McDonalds
-								"4356", // != Costco
-								"6600", // == Westmount
-								"6770", // == 650 Barrydowne
-								"6785", // ==
-								"6915", // ==
-								"6925", // ==
-								"6940", // == New Sudbury Centre
-								"6935", // != Shoppers Drug Mart
-								"6940", // New Sudbury Centre
-								"4690", // 3147 Bancroft ------------------------
-								"4735", // Amanda
-								"4530", // == Third Ave.
-								"4525", // != Third & Kingswa
-								"6600", // == Westmount
-								"6770", // == 650 Barrydowne
-								"6785", // ==
-								"6915", // ==
-								"6925", // ==
-								"6940", // == New Sudbury Centre
-								"4330", "1000", // != McDonalds / Transit Terminal
-								"4475", "4310" // != Third & Kenwood / 2nd & Bancroft
-						})) //
-				.addTripSort(0, //
-						Arrays.asList(new String[] { //
-						})) //
-				.compileBothTripSort());
-		map2.put(141L, new RouteTripSpec(141L, //
-				INBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, TRANSIT_TERMINAL, //
-				OUTBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, HAWTHORNE_BARRYDOWNE) //
-				.addTripSort(INBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"6925", // New Sudbury Centre
-								"1000", // Transit Terminal
-						})) //
-				.addTripSort(OUTBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"1000", // Transit Terminal
-								"6760", // Barrydowne
-								"6925", // New Sudbury Centre
-								"6930", // Shoppers Drug Mart
-						})) //
-				.compileBothTripSort());
-		map2.put(142L, new RouteTripSpec(142L, //
-				INBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, TRANSIT_TERMINAL, //
-				OUTBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, HAWTHORNE_BARRYDOWNE) //
-				.addTripSort(INBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"6590", "1000" //
-						})) //
-				.addTripSort(OUTBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"1000", "6590" //
-						})) //
-				.compileBothTripSort());
-		map2.put(147L, new RouteTripSpec(147L, //
-				LOOP_ID, MTrip.HEADSIGN_TYPE_STRING, TRANSIT_TERMINAL, //
-				0, MTrip.HEADSIGN_TYPE_STRING, "") //
-				.addTripSort(LOOP_ID, //
-						Arrays.asList(new String[] { //
-						"1000", // Transit Terminal
-								"1002", //
-								"1530", // Burton
-								"1055", //
-								"1000", // Transit Terminal
-								"1050", //
-								"1695", // 276 Kathleen
-								"1045", //
-								"1000" // Transit Terminal
-						})) //
-				.addTripSort(0, //
-						Arrays.asList(new String[] { //
-						})) //
-				.compileBothTripSort());
-		map2.put(181L, new RouteTripSpec(181L, //
-				INBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, TRANSIT_TERMINAL, //
-				OUTBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, CAM_ST) //
-				.addTripSort(INBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"6195", "6200", "1000" //
-						})) //
-				.addTripSort(OUTBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"1000", "6010", "6200" //
-						})) //
-				.compileBothTripSort());
-		map2.put(182L, new RouteTripSpec(182L, //
-				INBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, TRANSIT_TERMINAL, //
-				OUTBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, CAM_ST) //
-				.addTripSort(INBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"6195", "6025", "1000" //
-						})) //
-				.addTripSort(OUTBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"1000", "6005" //
-						})) //
-				.compileBothTripSort());
-		map2.put(189L, new RouteTripSpec(189L, //
-				INBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, TRANSIT_TERMINAL, //
-				OUTBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, WALMART_SOUTH_END) //
-				.addTripSort(INBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"5830", "1000" //
-						})) //
-				.addTripSort(OUTBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"1000", "5830" //
-						})) //
-				.compileBothTripSort());
-		map2.put(241L, new RouteTripSpec(241L, //
-				INBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, TRANSIT_TERMINAL, //
-				OUTBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, BANCROFT_AND_MOONLIGHT) //
-				.addTripSort(INBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"4635", "1000" //
-						})) //
-				.addTripSort(OUTBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"1000", "4635" //
-						})) //
-				.compileBothTripSort());
-		map2.put(300L, new RouteTripSpec(300L, //
-				INBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, TRANSIT_TERMINAL, //
-				OUTBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, PEPERTREE_VILLAGE) //
-				.addTripSort(INBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"7300", // Pepertree Village
-								"7180", // == Graywood
-								"7320", "7520", // !=
-								"7185", // !=
-								"6585", // New Sudbury Centre
-								"1000" // Transit Terminal
-						})) //
-				.addTripSort(OUTBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"1000", "7300" //
-						})) //
-				.compileBothTripSort());
-		map2.put(301L, new RouteTripSpec(301L, //
-				INBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, TRANSIT_TERMINAL, //
-				OUTBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, PEPERTREE_VILLAGE) //
-				.addTripSort(INBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"7300",// Pepertree Village
-								"7015", // Auger & Lasalle
-								"6585", // New Sudbury Centre
-								"1000" // Transit Terminal
-						})) //
-				.addTripSort(OUTBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"1000", "7300" //
-						})) //
-				.compileBothTripSort());
-		map2.put(302L, new RouteTripSpec(302L, //
-				INBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, TRANSIT_TERMINAL, //
-				OUTBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, LANSING) //
-				.addTripSort(INBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"7180", // Graywood
-								"7110", // == Cambrian College
-								"7095", // !=
-								"6505", // !=
-								"6510", // !=
-								"7085", // ==
-								"6585", // New Sudbury Centre
-								"1000", // Transit Terminal
-						})) //
-				.addTripSort(OUTBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"1000", // Transit Terminal
-								"7090", // ==
-								"6552", // !=
-								"6500", // !=
-								"7100", // !=
-								"7113", // ==
-								"7180", // Graywood
-						})) //
-				.compileBothTripSort());
-		map2.put(304L, new RouteTripSpec(304L, //
-				LOOP_ID, MTrip.HEADSIGN_TYPE_STRING, TRANSIT_TERMINAL_NEW_SUDBURY, //
-				0, MTrip.HEADSIGN_TYPE_STRING, StringUtils.EMPTY) //
-				.addTripSort(LOOP_ID, //
-						Arrays.asList(new String[] { //
-						"1000", // Transit Terminal
-								"6930", // Shoppers Drug Mart
-								"6595", // ==
-								"4360", // xx
-								"4361", // ==
-								"4371", // ==
-								"4360", // xx
-								"4351", // ==
-								"1000", // Transit Terminal
-						})) //
-				.addTripSort(0, //
-						Arrays.asList(new String[] { //
-						/** no stops **/
-						})) //
-				.compileBothTripSort());
-		map2.put(305L, new RouteTripSpec(305L, //
-				INBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, TRANSIT_TERMINAL, //
-				OUTBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, LASALLE_PEPERTREE) //
-				.addTripSort(INBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"7300", "1000" //
-						})) //
-				.addTripSort(OUTBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"1000", "7300" //
-						})) //
-				.compileBothTripSort());
-		map2.put(400L, new RouteTripSpec(400L, //
-				INBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, TRANSIT_TERMINAL, //
-				OUTBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, CAMBRIAN_COLLEGE) //
-				.addTripSort(INBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"7115", "1000" //
-						})) //
-				.addTripSort(OUTBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"1000", "7115" //
-						})) //
-				.compileBothTripSort());
-		map2.put(401L, new RouteTripSpec(401L, //
-				INBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, TRANSIT_TERMINAL, //
-				OUTBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, CAMBRIAN_COLLEGE) //
-				.addTripSort(INBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"7115", // Cambrian College
-								"4371", // == !=
-								"4350", // !=
-								"4360", // != <>
-								"4351", // == !=
-								"1000", // Transit Terminal
-						})) //
-				.addTripSort(OUTBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"1000", // Transit Terminal
-								"4185", // ==
-								"4325", // !=
-								"4335", // ==
-								"4346", // !=
-								"4360", // <>
-								"4366", // ==
-								"4373", // !=
-								"4356", // !=
-								"6600", // ==
-								"7115", // Cambrian College
-						})) //
-				.compileBothTripSort());
-		map2.put(402L, new RouteTripSpec(402L, //
-				INBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, TRANSIT_TERMINAL, //
-				OUTBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, CAMBRIAN_COLLEGE) //
-				.addTripSort(INBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"7110", "1000" //
-						})) //
-				.addTripSort(OUTBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"1000", "7110" //
-						})) //
-				.compileBothTripSort());
-		map2.put(403L, new RouteTripSpec(403L, //
-				INBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, TRANSIT_TERMINAL, //
-				OUTBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, PEPERTREE_VILLAGE) //
-				.addTripSort(INBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"7300", "1000" //
-						})) //
-				.addTripSort(OUTBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"1000", "7300" //
-						})) //
-				.compileBothTripSort());
-		map2.put(502L, new RouteTripSpec(502L, //
-				INBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, TRANSIT_TERMINAL, //
-				OUTBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, ALGOMA_HOSPITAL) //
-				.addTripSort(INBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"5655", "1000" //
-						})) //
-				.addTripSort(OUTBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"1000", "5655" //
-						})) //
-				.compileBothTripSort());
-		map2.put(503L, new RouteTripSpec(503L, //
-				INBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, UNIVERSITY, //
-				OUTBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, WALMART_SOUTH_END) //
-				.addTripSort(INBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"5830", "5585", "1000" //
-						})) //
-				.addTripSort(OUTBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"1000", "5590", "5830" //
-						})) //
-				.compileBothTripSort());
-		map2.put(640L, new RouteTripSpec(640L, //
-				INBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, TRANSIT_TERMINAL, //
-				OUTBOUND_ID, MTrip.HEADSIGN_TYPE_STRING, COPPER_CLIFF) //
-				.addTripSort(INBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"2290", "1000" //
-						})) //
-				.addTripSort(OUTBOUND_ID, //
-						Arrays.asList(new String[] { //
-						"1000", "2175", "2290" //
-						})) //
-				.compileBothTripSort());
 		ALL_ROUTE_TRIPS2 = map2;
 	}
 
@@ -632,73 +180,73 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 		if (ALL_ROUTE_TRIPS2.containsKey(mRoute.getId())) {
 			return; // split
 		}
-		if (mRoute.getId() == 303L) {
-			if ("Falconbridge / Transit Terminal".equals(gTrip.getTripHeadsign())) {
-				mTrip.setHeadsignString(FALCONBRIDGE_TRANSIT_TERMINAL, LOOP_ID);
+		if (isGoodEnoughAccepted()) {
+			if (mRoute.getId() == 2L) {
+				if ("BARRY DOWNE / CAMBRIAN".equals(gTrip.getTripHeadsign()) //
+						|| "BARRY DOWNE / CAMBRIAN EXPRESS".equals(gTrip.getTripHeadsign())) {
+					mTrip.setHeadsignString(CAMBRIAN, OUTBOUND_ID);
+					return;
+				} else if ("2 Barry Downe / Cambrian".equals(gTrip.getTripHeadsign()) //
+						|| "BARRY DOWNE / CAMBRIAN EXPRESS DOWNTOWN".equals(gTrip.getTripHeadsign())) {
+					mTrip.setHeadsignString(DOWNTOWN, INBOUND_ID);
+					return;
+				}
+				System.out.printf("\n%s: Unexpected trip %s!\n", mRoute.getId(), gTrip);
+				System.exit(-1);
 				return;
 			}
-		} else if (mRoute.getId() == 500l) {
-			if ("Transit Terminal".equals(gTrip.getTripHeadsign())) {
-				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
-				return;
-			} else if ("Laurentian University".equals(gTrip.getTripHeadsign())) {
-				mTrip.setHeadsignString(LAURENTIAN_UNIVERSITY, OUTBOUND_ID);
-				return;
-			}
-		} else if (mRoute.getId() == 501l) {
-			if ("Transit Terminal".equals(gTrip.getTripHeadsign())) {
-				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
-				return;
-			} else if ("Algoma Hospital".equals(gTrip.getTripHeadsign())) {
-				mTrip.setHeadsignString(ALGOMA_HOSPITAL, OUTBOUND_ID);
+			if (mRoute.getId() == 11L) {
+				if ("DONOVAN/COLLEGE BOREAL TO CAMBRIAN".equals(gTrip.getTripHeadsign()) //
+						|| "DONOVAN / COLLEGE BOREAL TO NEW SUDBURY CENTRE".equals(gTrip.getTripHeadsign())) {
+					mTrip.setHeadsignString(cleanTripHeadsign(gTrip.getTripHeadsign()), OUTBOUND_ID);
+					return;
+				} else if ("DONOVAN - COLLEGE BOREAL TO DOWNTOWN".equals(gTrip.getTripHeadsign())
+						|| "DONOVAN/COLLEGE BOREAL TO DOWNTOWN".equals(gTrip.getTripHeadsign())) {
+					mTrip.setHeadsignString(cleanTripHeadsign(gTrip.getTripHeadsign()), INBOUND_ID);
+					return;
+				}
+				System.out.printf("\n%s: Unexpected trip %s!\n", mRoute.getId(), gTrip);
+				System.exit(-1);
 				return;
 			}
-		} else if (mRoute.getId() == 701l) {
-			if ("Transit Terminal".equals(gTrip.getTripHeadsign())) {
-				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
-				return;
-			} else if ("Lively".equals(gTrip.getTripHeadsign())) {
-				mTrip.setHeadsignString(LIVELY, OUTBOUND_ID);
-				return;
-			}
-		} else if (mRoute.getId() == 702l) {
-			if ("Transit Terminal".equals(gTrip.getTripHeadsign())) {
-				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
-				return;
-			} else if ("Chelmsford".equals(gTrip.getTripHeadsign())) {
-				mTrip.setHeadsignString(CHELMSFORD, OUTBOUND_ID);
+			if (mRoute.getId() == 12L) {
+				if (isGoodEnoughAccepted()) {
+					if ("SECOND AVENUE TO NEW SUDBURY CENTRE".equals(gTrip.getTripHeadsign())) {
+						mTrip.setHeadsignString(cleanTripHeadsign(gTrip.getTripHeadsign()), OUTBOUND_ID);
+						return;
+					} else if ("SECOND AVENUE TO DOWNTOWN".equals(gTrip.getTripHeadsign())) {
+						mTrip.setHeadsignString(cleanTripHeadsign(gTrip.getTripHeadsign()), INBOUND_ID);
+						return;
+					}
+				}
+				System.out.printf("\n%s: Unexpected trip %s!\n", mRoute.getId(), gTrip);
+				System.exit(-1);
 				return;
 			}
-		} else if (mRoute.getId() == 703l) {
-			if ("Transit Terminal".equals(gTrip.getTripHeadsign())) {
-				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
-				return;
-			} else if ("Capreol".equals(gTrip.getTripHeadsign())) {
-				mTrip.setHeadsignString(CAPREOL, OUTBOUND_ID);
-				return;
-			}
-		} else if (mRoute.getId() == 704l) {
-			if ("Transit Terminal".equals(gTrip.getTripHeadsign())) {
-				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
-				return;
-			} else if ("Gravelle Dr. Trailer Park".equals(gTrip.getTripHeadsign())) {
-				mTrip.setHeadsignString(GRAVELLE_DR_TRAILER_PARK, OUTBOUND_ID);
-				return;
-			}
-		} else if (mRoute.getId() == 819l) {
-			if ("Transit Terminal".equals(gTrip.getTripHeadsign())) {
-				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
-				return;
-			} else if ("Walmart South End".equals(gTrip.getTripHeadsign())) {
-				mTrip.setHeadsignString(WALMART_SOUTH_END, OUTBOUND_ID);
+			if (mRoute.getId() == 101L) {
+				if ("LIVELY TO NAUGHTON".equals(gTrip.getTripHeadsign()) //
+						|| "LIVELY TO NAUGHTON VIA MR 24".equals(gTrip.getTripHeadsign())) {
+					mTrip.setHeadsignString(cleanTripHeadsign(gTrip.getTripHeadsign()), OUTBOUND_ID);
+					return;
+				} else if ("LIVELY TO DOW".equals(gTrip.getTripHeadsign()) //
+						|| "LIVELY NAUGHTON TO SOUTH END".equals(gTrip.getTripHeadsign()) //
+						|| "LIVELY NAUGHTON TO SOUTH END VIA MR 24".equals(gTrip.getTripHeadsign())) {
+					mTrip.setHeadsignString(cleanTripHeadsign(gTrip.getTripHeadsign()), INBOUND_ID);
+					return;
+				}
+				System.out.printf("\n%s: Unexpected trip %s!\n", mRoute.getId(), gTrip);
+				System.exit(-1);
 				return;
 			}
-		} else if (mRoute.getId() == 940l) {
-			if ("Transit Terminal".equals(gTrip.getTripHeadsign())) {
-				mTrip.setHeadsignString(TRANSIT_TERMINAL, INBOUND_ID);
+			if (gTrip.getTripHeadsign().equals("Transit Terminal") //
+					|| gTrip.getTripHeadsign().endsWith(" TO DOWNTOWN") //
+					|| gTrip.getTripHeadsign().endsWith(" TO NEW SUDBURY") //
+					|| gTrip.getTripHeadsign().endsWith("TO NEW SUDBURY CENTRE") //
+					|| gTrip.getTripHeadsign().endsWith(" LOCAL TO SOUTH END")) {
+				mTrip.setHeadsignString(cleanTripHeadsign(gTrip.getTripHeadsign()), INBOUND_ID);
 				return;
-			} else if ("Copper Cliff".equals(gTrip.getTripHeadsign())) {
-				mTrip.setHeadsignString(COPPER_CLIFF, OUTBOUND_ID);
+			} else {
+				mTrip.setHeadsignString(cleanTripHeadsign(gTrip.getTripHeadsign()), OUTBOUND_ID);
 				return;
 			}
 		}
@@ -706,17 +254,25 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 		System.exit(-1);
 	}
 
-	private static final Pattern CLEAN_UNIVERISITY = Pattern.compile("((^|\\W){1}(laurentian university)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final Pattern CLEAN_UNIVERISITY = Pattern.compile("((^|\\W){1}(laurentian university|LU)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
 	private static final String CLEAN_UNIVERISITY_REPLACEMENT = "$2" + LAURENTIAN_UNIVERSITY + "$4";
 
-	private static final Pattern CLEAN_UNIVERISITY_FR = Pattern.compile("((^|\\W){1}(universit[e|é] laurentienne)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final Pattern CLEAN_UNIVERISITY_FR = Pattern.compile("((^|\\W){1}(universit[e|é] laurentienne|UL)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
 	private static final String CLEAN_UNIVERISITY_FR_REPLACEMENT = "$2" + LAURENTIAN_UNIVERSITY_FR + "$4";
 
 	private static final Pattern SUDBURY_SHOPPING_CENTER = Pattern.compile("(subdury shopping centre)", Pattern.CASE_INSENSITIVE);
 	private static final String SUDBURY_SHOPPING_CENTER_REPLACEMENT = "Subdury centre";
 
+	private static final Pattern STARTS_WITH_TO = Pattern.compile("(^.*( to|to) )", Pattern.CASE_INSENSITIVE);
+	private static final Pattern ENDS_WITH_VIA = Pattern.compile("( via .*$)", Pattern.CASE_INSENSITIVE);
+
 	@Override
 	public String cleanTripHeadsign(String tripHeadsign) {
+		if (Utils.isUppercaseOnly(tripHeadsign, true, true)) {
+			tripHeadsign = tripHeadsign.toLowerCase(Locale.ENGLISH);
+		}
+		tripHeadsign = STARTS_WITH_TO.matcher(tripHeadsign).replaceAll(StringUtils.EMPTY);
+		tripHeadsign = ENDS_WITH_VIA.matcher(tripHeadsign).replaceAll(StringUtils.EMPTY);
 		tripHeadsign = SUDBURY_SHOPPING_CENTER.matcher(tripHeadsign).replaceAll(SUDBURY_SHOPPING_CENTER_REPLACEMENT);
 		tripHeadsign = CLEAN_UNIVERISITY.matcher(tripHeadsign).replaceAll(CLEAN_UNIVERISITY_REPLACEMENT);
 		tripHeadsign = CLEAN_UNIVERISITY_FR.matcher(tripHeadsign).replaceAll(CLEAN_UNIVERISITY_FR_REPLACEMENT);
@@ -725,6 +281,49 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 		tripHeadsign = CleanUtils.cleanStreetTypes(tripHeadsign);
 		tripHeadsign = CleanUtils.removePoints(tripHeadsign);
 		return CleanUtils.cleanLabel(tripHeadsign);
+	}
+
+	@Override
+	public boolean mergeHeadsign(MTrip mTrip, MTrip mTripToMerge) {
+		List<String> headsignsValues = Arrays.asList(mTrip.getHeadsignValue(), mTripToMerge.getHeadsignValue());
+		if (mTrip.getRouteId() == 11L) {
+			if (Arrays.asList( //
+					NEW_SUDBURY_CENTRE, //
+					CAMBRIAN //
+					).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString(CAMBRIAN, mTrip.getHeadsignId());
+				return true;
+			}
+		} else if (mTrip.getRouteId() == 101L) {
+			if (Arrays.asList( //
+					DOW, //
+					SOUTH_END //
+					).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString(SOUTH_END, mTrip.getHeadsignId());
+				return true;
+			}
+		} else if (mTrip.getRouteId() == 103L) {
+			if (Arrays.asList( //
+					CONISTON + " / " + TRANSIT_TERMINAL, //
+					CONISTON //
+					).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString(CONISTON, mTrip.getHeadsignId());
+				return true;
+			}
+		} else if (mTrip.getRouteId() == 105L) {
+			if (Arrays.asList( //
+					"Vly", //
+					"Blezard", //
+					GRAVEL_DR, //
+					CAPREOL //
+					).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString(CAPREOL, mTrip.getHeadsignId());
+				return true;
+			}
+		}
+		System.out.printf("\n%s: Couldn't merge %s and %s!\n", mTrip.getRouteId(), mTrip, mTripToMerge);
+		System.exit(-1);
+		return false;
 	}
 
 	@Override
