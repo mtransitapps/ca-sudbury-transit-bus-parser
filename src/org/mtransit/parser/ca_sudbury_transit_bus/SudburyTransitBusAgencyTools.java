@@ -95,14 +95,6 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 	}
 
 	@Override
-	public String getRouteShortName(GRoute gRoute) {
-		if (Utils.isDigitsOnly(gRoute.getRouteShortName())) {
-			return String.format("%03d", Integer.parseInt(gRoute.getRouteShortName())); // used by real-time API, do not change
-		}
-		return super.getRouteShortName(gRoute); // used by real-time API, do not change
-	}
-
-	@Override
 	public String getRouteLongName(GRoute gRoute) {
 		String routeLongName = gRoute.getRouteLongName();
 		routeLongName = CleanUtils.cleanSlashes(routeLongName);
@@ -264,15 +256,15 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 	private static final String SUDBURY_SHOPPING_CENTER_REPLACEMENT = "Subdury centre";
 
 	private static final Pattern STARTS_WITH_TO = Pattern.compile("(^.*( to|to) )", Pattern.CASE_INSENSITIVE);
-	private static final Pattern ENDS_WITH_VIA = Pattern.compile("( via .*$)", Pattern.CASE_INSENSITIVE);
 
 	@Override
 	public String cleanTripHeadsign(String tripHeadsign) {
+		// TODO FIXME in sync with Greater Sudbury Transit provider
 		if (Utils.isUppercaseOnly(tripHeadsign, true, true)) {
 			tripHeadsign = tripHeadsign.toLowerCase(Locale.ENGLISH);
 		}
-		tripHeadsign = STARTS_WITH_TO.matcher(tripHeadsign).replaceAll(StringUtils.EMPTY);
-		tripHeadsign = ENDS_WITH_VIA.matcher(tripHeadsign).replaceAll(StringUtils.EMPTY);
+		tripHeadsign = CleanUtils.keepToAndRemoveVia(tripHeadsign);
+		tripHeadsign = STARTS_WITH_TO.matcher(tripHeadsign).replaceAll(StringUtils.EMPTY); // New Sudbury Localto New Sudbury Ctr
 		tripHeadsign = SUDBURY_SHOPPING_CENTER.matcher(tripHeadsign).replaceAll(SUDBURY_SHOPPING_CENTER_REPLACEMENT);
 		tripHeadsign = CLEAN_UNIVERISITY.matcher(tripHeadsign).replaceAll(CLEAN_UNIVERISITY_REPLACEMENT);
 		tripHeadsign = CLEAN_UNIVERISITY_FR.matcher(tripHeadsign).replaceAll(CLEAN_UNIVERISITY_FR_REPLACEMENT);
