@@ -48,11 +48,16 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public void start(String[] args) {
-		System.out.printf("\nGenerating Sudbury Transit bus data...");
+		System.out.print("\nGenerating Sudbury Transit bus data...");
 		long start = System.currentTimeMillis();
 		this.serviceIds = extractUsefulServiceIds(args, this);
 		super.start(args);
 		System.out.printf("\nGenerating Sudbury Transit bus data... DONE in %s.\n", Utils.getPrettyDuration(System.currentTimeMillis() - start));
+	}
+
+	@Override
+	public boolean isGoodEnoughAccepted() {
+		return true; // TODO ?
 	}
 
 	@Override
@@ -139,7 +144,8 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 
 	private static HashMap<Long, RouteTripSpec> ALL_ROUTE_TRIPS2;
 	static {
-		HashMap<Long, RouteTripSpec> map2 = new HashMap<Long, RouteTripSpec>();
+		//noinspection UnnecessaryLocalVariable
+		HashMap<Long, RouteTripSpec> map2 = new HashMap<>();
 		ALL_ROUTE_TRIPS2 = map2;
 	}
 
@@ -246,10 +252,10 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 		System.exit(-1);
 	}
 
-	private static final Pattern CLEAN_UNIVERISITY = Pattern.compile("((^|\\W){1}(laurentian university|LU)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final Pattern CLEAN_UNIVERISITY = Pattern.compile("((^|\\W)(laurentian university|LU)(\\W|$))", Pattern.CASE_INSENSITIVE);
 	private static final String CLEAN_UNIVERISITY_REPLACEMENT = "$2" + LAURENTIAN_UNIVERSITY + "$4";
 
-	private static final Pattern CLEAN_UNIVERISITY_FR = Pattern.compile("((^|\\W){1}(universit[e|é] laurentienne|UL)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final Pattern CLEAN_UNIVERISITY_FR = Pattern.compile("((^|\\W)(universit[e|é] laurentienne|UL)(\\W|$))", Pattern.CASE_INSENSITIVE);
 	private static final String CLEAN_UNIVERISITY_FR_REPLACEMENT = "$2" + LAURENTIAN_UNIVERSITY_FR + "$4";
 
 	private static final Pattern SUDBURY_SHOPPING_CENTER = Pattern.compile("(subdury shopping centre)", Pattern.CASE_INSENSITIVE);
