@@ -9,8 +9,10 @@ import java.util.Locale;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
+import org.jetbrains.annotations.NotNull;
 import org.mtransit.parser.CleanUtils;
 import org.mtransit.parser.DefaultAgencyTools;
+import org.mtransit.parser.MTLog;
 import org.mtransit.parser.Pair;
 import org.mtransit.parser.SplitUtils;
 import org.mtransit.parser.SplitUtils.RouteTripSpec;
@@ -48,11 +50,11 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public void start(String[] args) {
-		System.out.print("\nGenerating Sudbury Transit bus data...");
+		MTLog.log("Generating Sudbury Transit bus data...");
 		long start = System.currentTimeMillis();
-		this.serviceIds = extractUsefulServiceIds(args, this);
+		this.serviceIds = extractUsefulServiceIds(args, this, true);
 		super.start(args);
-		System.out.printf("\nGenerating Sudbury Transit bus data... DONE in %s.\n", Utils.getPrettyDuration(System.currentTimeMillis() - start));
+		MTLog.log("Generating Sudbury Transit bus data... DONE in %s.", Utils.getPrettyDuration(System.currentTimeMillis() - start));
 	}
 
 	@Override
@@ -189,8 +191,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 					mTrip.setHeadsignString(DOWNTOWN, INBOUND_ID);
 					return;
 				}
-				System.out.printf("\n%s: Unexpected trip %s!\n", mRoute.getId(), gTrip);
-				System.exit(-1);
+				MTLog.logFatal("%s: Unexpected trip %s!", mRoute.getId(), gTrip);
 				return;
 			}
 			if (mRoute.getId() == 11L) {
@@ -203,8 +204,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 					mTrip.setHeadsignString(cleanTripHeadsign(gTrip.getTripHeadsign()), INBOUND_ID);
 					return;
 				}
-				System.out.printf("\n%s: Unexpected trip %s!\n", mRoute.getId(), gTrip);
-				System.exit(-1);
+				MTLog.logFatal("%s: Unexpected trip %s!", mRoute.getId(), gTrip);
 				return;
 			}
 			if (mRoute.getId() == 12L) {
@@ -217,8 +217,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 						return;
 					}
 				}
-				System.out.printf("\n%s: Unexpected trip %s!\n", mRoute.getId(), gTrip);
-				System.exit(-1);
+				MTLog.logFatal("%s: Unexpected trip %s!", mRoute.getId(), gTrip);
 				return;
 			}
 			if (mRoute.getId() == 101L) {
@@ -232,8 +231,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 					mTrip.setHeadsignString(cleanTripHeadsign(gTrip.getTripHeadsign()), INBOUND_ID);
 					return;
 				}
-				System.out.printf("\n%s: Unexpected trip %s!\n", mRoute.getId(), gTrip);
-				System.exit(-1);
+				MTLog.logFatal("%s: Unexpected trip %s!", mRoute.getId(), gTrip);
 				return;
 			}
 			if (gTrip.getTripHeadsign().equals("Transit Terminal") //
@@ -248,8 +246,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				return;
 			}
 		}
-		System.out.printf("\n%s: Unexpected trip %s!\n", mRoute.getId(), gTrip);
-		System.exit(-1);
+		MTLog.logFatal("%s: Unexpected trip %s!", mRoute.getId(), gTrip);
 	}
 
 	private static final Pattern CLEAN_UNIVERISITY = Pattern.compile("((^|\\W)(laurentian university|LU)(\\W|$))", Pattern.CASE_INSENSITIVE);
@@ -319,8 +316,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				return true;
 			}
 		}
-		System.out.printf("\n%s: Couldn't merge %s and %s!\n", mTrip.getRouteId(), mTrip, mTripToMerge);
-		System.exit(-1);
+		MTLog.logFatal("%s: Couldn't merge %s and %s!", mTrip.getRouteId(), mTrip, mTripToMerge);
 		return false;
 	}
 
@@ -334,6 +330,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 		return CleanUtils.cleanLabel(gStopName);
 	}
 
+	@NotNull
 	@Override
 	public String getStopCode(GStop gStop) {
 		return gStop.getStopId(); // use stop ID as stop code, used by real-time API, do not change
