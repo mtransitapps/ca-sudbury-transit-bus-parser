@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
@@ -96,8 +97,21 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 		return MAgency.ROUTE_TYPE_BUS;
 	}
 
+	private static final Pattern DIGITS = Pattern.compile("[\\d]+");
+
 	@Override
 	public long getRouteId(GRoute gRoute) {
+		if (!Utils.isDigitsOnly(gRoute.getRouteShortName())) {
+			Matcher matcher = DIGITS.matcher(gRoute.getRouteShortName());
+			if (matcher.find()) {
+				int digits = Integer.parseInt(matcher.group());
+				String rsnLC = gRoute.getRouteShortName().toLowerCase(Locale.ENGLISH);
+				if (rsnLC.endsWith("r")) {
+					return digits + 180_000L;
+				}
+			}
+			MTLog.logFatal("Unexpected route ID for %s!", gRoute);
+		}
 		return Long.parseLong(gRoute.getRouteShortName()); // use route short name as route ID
 	}
 
