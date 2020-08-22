@@ -200,7 +200,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 						|| "BARRY DOWNE / CAMBRIAN EXPRESS".equals(gTrip.getTripHeadsign())) {
 					mTrip.setHeadsignString(CAMBRIAN, OUTBOUND_ID);
 					return;
-				} else if ("2 Barry Downe / Cambrian".equals(gTrip.getTripHeadsign()) //
+				} else if ("2 Barry Downe / Cambrian".equalsIgnoreCase(gTrip.getTripHeadsign()) //
 						|| "BARRY DOWNE / CAMBRIAN EXPRESS DOWNTOWN".equals(gTrip.getTripHeadsign())) {
 					mTrip.setHeadsignString(DOWNTOWN, INBOUND_ID);
 					return;
