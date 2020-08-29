@@ -235,11 +235,12 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				return;
 			}
 			if (mRoute.getId() == 101L) {
-				if ("LIVELY TO NAUGHTON".equals(gTrip.getTripHeadsign()) //
+				if ("LIVELY TO NAUGHTON".equalsIgnoreCase(gTrip.getTripHeadsign()) //
 						|| "LIVELY TO NAUGHTON VIA MR 24".equals(gTrip.getTripHeadsign())) {
 					mTrip.setHeadsignString(cleanTripHeadsign(gTrip.getTripHeadsign()), OUTBOUND_ID);
 					return;
 				} else if ("LIVELY TO DOW".equals(gTrip.getTripHeadsign()) //
+						|| "Naughton to Downtown".equals(gTrip.getTripHeadsign()) //
 						|| "LIVELY NAUGHTON TO SOUTH END".equals(gTrip.getTripHeadsign()) //
 						|| "LIVELY NAUGHTON TO SOUTH END VIA MR 24".equals(gTrip.getTripHeadsign())) {
 					mTrip.setHeadsignString(cleanTripHeadsign(gTrip.getTripHeadsign()), INBOUND_ID);
@@ -260,7 +261,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				return;
 			}
 		}
-		MTLog.logFatal("%s: Unexpected trip %s!", mRoute.getId(), gTrip);
+		throw new MTLog.Fatal("%s: Unexpected trip %s!", mRoute.getId(), gTrip);
 	}
 
 	private static final Pattern CLEAN_UNIVERISITY = Pattern.compile("((^|\\W)(laurentian university|LU)(\\W|$))", Pattern.CASE_INSENSITIVE);
@@ -303,6 +304,14 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(CAMBRIAN, mTrip.getHeadsignId());
 				return true;
 			}
+		} else if (mTrip.getRouteId() == 29L) {
+			if (Arrays.asList( //
+					"South End", //
+					"Martindale" //
+					).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString("Martindale", mTrip.getHeadsignId());
+				return true;
+			}
 		} else if (mTrip.getRouteId() == 101L) {
 			if (Arrays.asList( //
 					DOW, //
@@ -330,8 +339,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				return true;
 			}
 		}
-		MTLog.logFatal("%s: Couldn't merge %s and %s!", mTrip.getRouteId(), mTrip, mTripToMerge);
-		return false;
+		throw new MTLog.Fatal("%s: Couldn't merge %s and %s!", mTrip.getRouteId(), mTrip, mTripToMerge);
 	}
 
 	@Override
