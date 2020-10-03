@@ -222,6 +222,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 			}
 			if (mRoute.getId() == 11L) {
 				if ("DONOVAN/COLLEGE BOREAL TO CAMBRIAN".equals(gTrip.getTripHeadsign()) //
+						|| "DONOVAN/COLLEGE BOREAL TO NEW SUDBURY CENTRE".equals(gTrip.getTripHeadsign()) //
 						|| "DONOVAN / COLLEGE BOREAL TO NEW SUDBURY CENTRE".equals(gTrip.getTripHeadsign())) {
 					mTrip.setHeadsignString(cleanTripHeadsign(gTrip.getTripHeadsign()), OUTBOUND_ID);
 					return;
@@ -336,7 +337,6 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 				return true;
 			}
 		}
-		// Downtown) and MTrip(routeId=14, headsignId=2, headsignType=0, headsignValue=South End
 		if (mTrip.getRouteId() == 14L) {
 			if (Arrays.asList( //
 					NEW_SUDBURY_CENTRE, //
