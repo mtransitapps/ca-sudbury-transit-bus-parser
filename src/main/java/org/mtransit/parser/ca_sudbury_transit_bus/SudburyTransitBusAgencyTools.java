@@ -1,6 +1,7 @@
 package org.mtransit.parser.ca_sudbury_transit_bus;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.mtransit.commons.CharUtils;
 import org.mtransit.commons.CleanUtils;
 import org.mtransit.commons.provider.GreaterSudburyProviderCommons;
@@ -70,7 +71,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 		return CleanUtils.cleanLabel(routeLongName);
 	}
 
-	@NotNull
+	@Nullable
 	@Override
 	public String getRouteColor(@NotNull GRoute gRoute) {
 		if (ColorUtils.BLACK.equalsIgnoreCase(gRoute.getRouteColor())) {
