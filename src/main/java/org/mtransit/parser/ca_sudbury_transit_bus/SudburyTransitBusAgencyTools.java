@@ -2,19 +2,15 @@ package org.mtransit.parser.ca_sudbury_transit_bus;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.mtransit.commons.CharUtils;
 import org.mtransit.commons.CleanUtils;
 import org.mtransit.commons.provider.GreaterSudburyProviderCommons;
 import org.mtransit.parser.ColorUtils;
 import org.mtransit.parser.DefaultAgencyTools;
-import org.mtransit.parser.MTLog;
-import org.mtransit.parser.gtfs.data.GRoute;
 import org.mtransit.parser.gtfs.data.GStop;
 import org.mtransit.parser.mt.data.MAgency;
 
+import java.util.List;
 import java.util.Locale;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 // http://opendata.greatersudbury.ca/
 // http://opendata.greatersudbury.ca/datasets?q=Transportation&sort_by=relevance
@@ -25,6 +21,12 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 
 	public static void main(@NotNull String[] args) {
 		new SudburyTransitBusAgencyTools().start(args);
+	}
+
+	@Nullable
+	@Override
+	public List<Locale> getSupportedLanguages() {
+		return LANG_EN_FR;
 	}
 
 	@NotNull
@@ -44,22 +46,19 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 		return MAgency.ROUTE_TYPE_BUS;
 	}
 
-	private static final Pattern DIGITS = Pattern.compile("[\\d]+");
+	@Override
+	public boolean defaultRouteIdEnabled() {
+		return true;
+	}
 
 	@Override
-	public long getRouteId(@NotNull GRoute gRoute) {
-		if (!CharUtils.isDigitsOnly(gRoute.getRouteShortName())) {
-			final Matcher matcher = DIGITS.matcher(gRoute.getRouteShortName());
-			if (matcher.find()) {
-				final int digits = Integer.parseInt(matcher.group());
-				final String rsnLC = gRoute.getRouteShortName().toLowerCase(Locale.ENGLISH);
-				if (rsnLC.endsWith("r")) {
-					return digits + 180_000L;
-				}
-			}
-			throw new MTLog.Fatal("Unexpected route ID for %s!", gRoute);
-		}
-		return Long.parseLong(gRoute.getRouteShortName()); // use route short name as route ID
+	public boolean useRouteShortNameForRouteId() {
+		return true;
+	}
+
+	@Override
+	public boolean defaultRouteLongNameEnabled() {
+		return true;
 	}
 
 	@NotNull
@@ -73,11 +72,16 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 
 	@Nullable
 	@Override
-	public String getRouteColor(@NotNull GRoute gRoute) {
-		if (ColorUtils.BLACK.equalsIgnoreCase(gRoute.getRouteColor())) {
+	public String fixColor(@Nullable String color) {
+		if (ColorUtils.BLACK.equalsIgnoreCase(color)) {
 			return null;
 		}
-		return super.getRouteColor(gRoute);
+		return super.fixColor(color);
+	}
+
+	@Override
+	public boolean defaultAgencyColorEnabled() {
+		return true;
 	}
 
 	private static final String AGENCY_COLOR_GREEN = "005941"; // GREEN (from web site CSS)
