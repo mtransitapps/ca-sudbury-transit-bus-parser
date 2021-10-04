@@ -12,10 +12,9 @@ import org.mtransit.parser.mt.data.MAgency;
 import java.util.List;
 import java.util.Locale;
 
-// http://opendata.greatersudbury.ca/
-// http://opendata.greatersudbury.ca/datasets?q=Transportation&sort_by=relevance
-// http://opendata.greatersudbury.ca/datasets/transit-schedule-data-gtfs
-// http://www.greatersudbury.ca/image/opendata/gtfs.zip
+// https://opendata.greatersudbury.ca/
+// https://opendata.greatersudbury.ca/search?collection=Dataset&q=Transportation
+// https://opendata.greatersudbury.ca/documents/Sudbury::transit-schedule-data-gtfs/about
 // https://www.greatersudbury.ca/image/opendata/gtfs.zip
 public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 
