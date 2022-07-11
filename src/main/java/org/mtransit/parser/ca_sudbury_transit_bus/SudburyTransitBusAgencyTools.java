@@ -94,11 +94,6 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 	}
 
 	@Override
-	public boolean directionSplitterEnabled() {
-		return true;
-	}
-
-	@Override
 	public boolean directionSplitterEnabled(long routeId) {
 		if (routeId == 1L) {
 			return false;
