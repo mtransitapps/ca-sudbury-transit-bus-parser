@@ -98,7 +98,7 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 		if (routeId == 1L) {
 			return false;
 		}
-		return super.directionSplitterEnabled(routeId);
+		return true;
 	}
 
 	@Override
