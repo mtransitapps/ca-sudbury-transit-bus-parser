@@ -15,7 +15,6 @@ import java.util.Locale;
 // https://opendata.greatersudbury.ca/
 // https://opendata.greatersudbury.ca/search?collection=Dataset&q=Transportation
 // https://opendata.greatersudbury.ca/documents/Sudbury::transit-schedule-data-gtfs/about
-// https://www.greatersudbury.ca/image/opendata/gtfs.zip
 public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 
 	public static void main(@NotNull String[] args) {
