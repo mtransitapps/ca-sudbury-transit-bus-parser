@@ -59,11 +59,6 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 		return true;
 	}
 
-	@Override
-	public boolean forceStopTimeFirstNoDropOffLastNoPickupType() {
-		return true; // all drop-off / pickup are set to NORMAL(0)
-	}
-
 	@NotNull
 	@Override
 	public String cleanRouteLongName(@NotNull String routeLongName) {
