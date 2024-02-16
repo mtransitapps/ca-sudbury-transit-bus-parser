@@ -3,11 +3,13 @@ package org.mtransit.parser.ca_sudbury_transit_bus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.mtransit.commons.CleanUtils;
+import org.mtransit.commons.Letters;
 import org.mtransit.commons.provider.GreaterSudburyProviderCommons;
 import org.mtransit.parser.ColorUtils;
 import org.mtransit.parser.DefaultAgencyTools;
 import org.mtransit.parser.gtfs.data.GStop;
 import org.mtransit.parser.mt.data.MAgency;
+import org.mtransit.parser.mt.data.MRouteSNToIDConverter;
 
 import java.util.List;
 import java.util.Locale;
@@ -95,8 +97,8 @@ public class SudburyTransitBusAgencyTools extends DefaultAgencyTools {
 	@Override
 	public boolean directionSplitterEnabled(long routeId) {
 		//noinspection RedundantIfStatement
-		if (routeId == 1L) {
-			return false;
+		if (routeId == 1L + MRouteSNToIDConverter.endsWith(Letters.S)) { // 1S
+			return false; // 2024-02-16: impossible to split
 		}
 		return true;
 	}
